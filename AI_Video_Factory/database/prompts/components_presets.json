@@ -1,0 +1,21 @@
+{
+    "Ao_Beo_Phoi_Ren_2": {
+        "scenario": "TikTok Fashion 3-Image Funnel (Mẫu + Nền + Đồ)",
+        "description": "Sản phẩm mang nét quyến rũ tiểu thư pha chút hiện đại, là item \"hack dáng\" không thể thiếu trong tủ đồ. Áo được làm từ chất liệu thô cao cấp (Cotton/Linen) mềm mịn, thấm hút mồ hôi tốt, đứng form và không bị rũ hay nhăn nhàu. Thiết kế nổi bật với điểm nhấn bèo nhún chạy dọc thân hoặc ngang ngực giúp tạo hiệu ứng vòng 1 đầy đặn, kết hợp phối ren hoa tinh xảo ở ngực và cổ cùng phần tay phồng nhẹ che khuyết điểm bắp tay thanh thoát. Sản phẩm mang phong cách Hàn Quốc ngọt ngào, dễ dàng mix&match, có kích thước Freesize (S/M) phù hợp cho người từ 40kg đến dưới 60kg tùy thuộc vào chiều cao.",
+        "viral_transcript": "Nếu mà không nói giá là chị em cứ tưởng cái con áo này là tiền trăm đúng không? Nhưng mà tui săn xeo trên Tiktok sắp á nha Có 60 mấy ngàn thôi, nó rỉ thì thôi nhé mà còn đụng miệng ship Nhưng mà lưu ý giá này giá khuyến mại có thể nó lên lại nên cứ chết dùm tui đi ha Cái áo này thì mình bận được 2 kiểu lần ấy Một là cụ độ như này Hai là mấy bác mẹp vai ra mình bận kiểu trẻ vai cũng được Mang được 2 kiểu khá là xinh nha Nhưng mà tui vẫn ưng cái kiểu cụ độ này nhất Tại vì nhìn nó sang hơn đúng không mấy chị? Dễ mang dễ mít đồ lắm và nó khó lội thơ lội mốt Mà có rất là nhiều ton màu nữa và đầy đủ size tha hồ cho chị em lựa chọn luôn. Mình mặn đi chơi, cà phê, cà pháo thì nó quá đẹp đi. Hoặc là mình phối trong váy dài, trong váy ngắn đi tiệc thì nó lại sang nữa. Dễ mang, dễ photo và rất khó lội thơ, lội mốt nha. Nếu mà ai đã ưng cái vỏ hang em để góc trái mà hình tham khảo được nè.",
+        "images": [
+            "F:\\Program_Files\\data_image_product\\anh_ao_beo.png",
+            "F:\\Program_Files\\data_image_product\\back_ground_3.png",
+            "F:\\Program_Files\\data_image_product\\Screenshot 2026-05-24 081604.png"
+        ]
+    },
+    "Ao_Yem_Body": {
+        "scenario": "TikTok Fashion 3-Image Funnel (Autonomous AI Reasoning Driven)",
+        "description": "ẫu M quyến rũ được làm từ chất liệu thun cotton mềm mịn, co giãn tốt, có độ rũ vải, thoáng mát và mang lại cảm giác dễ chịu khi mặc. Thiết kế áo không có mút ngực, ôm sát cơ thể giúp tôn vóc dáng hiệu quả và đặc biệt có thể biến tấu mặc theo hai kiểu khác nhau. Sản phẩm hiện có các kích cỡ S, M, L cùng nhiều lựa chọn màu sắc như đen, trắng, đỏ đô, nâu và xanh than (màu sắc thực tế có thể chênh lệch đôi chút do ánh sáng khi chụp và độ phân giải của từng thiết bị). Nhờ kiểu dáng linh hoạt và thu hút, bạn có thể dễ dàng kết hợp chiếc áo yếm này với quần jean, chân váy hoặc quần short để tạo nên nhiều phong cách đa dạng, rất lý tưởng cho những buổi dạo phố, đi chơi hay hẹn hò cùng bạn bè.",
+        "images": [
+            "F:\\Program_Files\\data_image_product\\ao_yem_thun_halter\\ChatGPT Image 17_08_18 25 thg 5, 2026.png",
+            "F:\\Data_Tool\\temmp\\back_ground.png",
+            "F:\\Program_Files\\data_image_product\\ao_yem_thun_halter\\white.png"
+        ]
+    }
+}

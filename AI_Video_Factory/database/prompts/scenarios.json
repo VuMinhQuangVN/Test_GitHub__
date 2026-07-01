@@ -1,0 +1,92 @@
+{
+  "scenarios": {
+    "basic_model_2_frames": {
+      "display_name": "Pro Fashion Model (Fixed Framing & Natural Soul)",
+      "image_prompt_template": "{shot_definition}. Create an ultra realistic 9:16 vertical fashion photograph. IDENTITY LOCK: Use Image 1 as the absolute identity reference. OUTFIT: Exact clothing from Image 2. ENVIRONMENT: Use the exact background from Image 3. DEEP DEPTH OF FIELD, SHARP BACKGROUND DETAILS, NO BOKEH, NO BLURRY BACKGROUND. The scene MUST be an INDOOR room with consistent neutral white room lighting. FACIAL EXPRESSION: Natural, alive, and charismatic, subtle facial micro-expressions, soulful eyes, natural skin texture with pores. High-end luxury style, 4K realism.",
+      "chatgpt_video_prompt": "Bạn là chuyên gia chuyển động AI. Hãy viết kịch bản video 8 giây cho Google Veo 3 từ Image 1 tới Image 2.\n\nQUY TẮC BẮT BUỘC:\n1. Một cảnh quay liên tục (One continuous take), KHÔNG NHẢY CẢNH, phông nền tĩnh nét căng từ đầu tới cuối.\n2. LÀM MẪU SỐNG ĐỘNG (Bring the model to life): Mẫu chớp mắt tự nhiên (natural blinking), ánh mắt có hồn, biểu cảm khuôn mặt thay đổi cực nhỏ và mềm mại (facial micro-expressions).\n3. CHUYỂN ĐỘNG: Mẫu đứng tại chỗ, tạo dáng điệu đà. Cứ mỗi 2 giây thay đổi tư thế tay và hông quyến rũ. Nhịp thở tự nhiên. Camera push-in cực chậm.\n\nYÊU CẦU ĐẦU RA (OUTPUT FORMAT):\nBạn BẮT BUỘC phải trả về kết quả duy nhất là một chuỗi JSON hợp lệ (không kèm bất kỳ text giải thích nào khác) chứa đúng {num_variants} biến thể khác nhau về lời thoại/hành động nhẹ của kịch bản, theo cấu trúc:\n{\n  \"variants\": [\n    {\n      \"prompt\": \"Toàn bộ đoạn prompt video bằng tiếng Anh ráp hoàn chỉnh theo quy tắc trên. Hãy sử dụng dấu nháy đơn cho tất cả các chuỗi bên trong đoạn prompt này để tránh lỗi cú pháp JSON.\",\n      \"hook\": \"Mô tả ngắn ý tưởng phân cảnh\",\n      \"caption\": \"Mô tả ngắn\"\n    }\n  ]\n}",
+      "shots": {
+        "full_body": {
+          "prompt": "FULL BODY CINEMATIC SHOT. FEET MUST TOUCH THE BOTTOM EDGE OF THE IMAGE. Entire body visible. Model occupies 95% of vertical frame height. Standing pose. Sharp indoor background, deep focus, no bokeh.",
+          "target_count": 2,
+          "variants": 1,
+          "pose_change_request": "Keep everything identical (girl, outfit, room, white lighting). Keep background SHARP and STATIC. Change her standing pose to be more charming. Feet MUST remain at the bottom edge. Face remains natural and alive with soulful eyes. Stand in the same spot."
+        },
+        "medium_shot": {
+          "prompt": "MEDIUM CINEMATIC SHOT cropped from mid-thigh to head. Model centered and large in frame. Facial micro-expressions, eyes look directly into camera with life. Clear waistline. Sharp background, no blur, deep depth of field.",
+          "target_count": 2,
+          "variants": 1,
+          "pose_change_request": "Maintain identical appearance and sharp static background. Give her a more feminine and elegant posture. Make her eyes more expressive and her smile more natural and alluring. Tilt her head slightly."
+        },
+        "close_angle": {
+          "prompt": "CLOSE-UP BEAUTY SHOT from chest to head. Face dominates the frame. Sharp expressive eyes, natural blinking, soulful look. Sharp background details visible, NO BOKEH, deep focus.",
+          "target_count": 2,
+          "variants": 1,
+          "pose_change_request": "Keep the same face, room and sharp background. Change her facial micro-expression to be more charismatic and inviting. Move her hands slightly near her face or hair for a premium beauty pose. Keep her looking alive."
+        }
+      }
+    },
+    "mirror_selfie_lipsync_vibe": {
+      "display_name": "Mirror Selfie Pro",
+      "image_prompt_template": "Create an ultra realistic 9:16 mirror selfie fashion photo. Use Image 1 as the main reference. Preserve the same body proportions, standing pose, hairstyle, phone covering face position, mirror framing, camera angle, arm position, perspective, and natural bedroom selfie vibe from Image 1. Replace ONLY the clothing with the outfit from Image 2. The outfit must fit naturally onto the original body while keeping the exact same body shape and composition from Image 1. Maintain realistic fabric folds, stretching, shadows, and clothing fit. Keep the same indoor bedroom environment and mirror selfie atmosphere from Image 1, and you MUST include slight, natural variations in the background decor and room items. Do not change the pose, framing, zoom, body ratio, or overall composition. Natural indoor lighting, realistic skin texture, authentic mirror reflection, DSLR realism, sharp focus, no overprocessed AI beauty effects, ultra realistic 4K fashion photography.",
+      "chatgpt_video_prompt": "Bạn là đạo diễn TikTok fashion reels cho Veo 3 và Sora. Viết prompt video mirror selfie 8s ultra-realistic, continuous take. Điện thoại luôn che mặt.\n\n. Viết prompt chuyển động mượt mà tự nhiên slow 1 chút nhé(ý là chuyển động không quá chậm mà cũng không nhanh) và thu hút người xem, có timeline rõ ràng cũng với tránh việc mẫu đứng yên 1 tư thế quá lâu.'\n\nYÊU CẦU ĐẦU RA:\nTrả về ONLY một chuỗi JSON hợp lệ chứa đúng {num_variants} biến thể:\n{\n  \"variants\": [\n    {\n      \"prompt\": \"Đoạn prompt video tiếng Anh theo cấu trúc chuỗi thời gian (First... Then... Finally...). Dùng dấu nháy đơn ' cho chuỗi bên trong.\",\n      \"hook\": \"Ý tưởng phân cảnh ngắn\",\n      \"caption\": \"Mô tả ngắn\"\n    }\n  ]\n}",
+      "shots": {
+        "mirror_master_vibe": {
+          "prompt": "Natural mirror selfie full-body fashion shot. Keep the exact same room, framing, mirror angle, phone position, and standing posture from Image 1. The new outfit from Image 2 is worn naturally with realistic fabric behavior. Subtle body angle adjustment, relaxed shoulders, tiny breathing movement, and soft natural posture. Premium fashion realism, ultra realistic mirror selfie aesthetic.",
+          "target_count": 1,
+          "variants": 2,
+          "pose_change_request": "Keep the same girl, room, and mirror selfie composition from Image 1. Add only small natural pose variations such as slight hip shift, relaxed shoulder movement, gentle head tilt, and subtle posture changes while maintaining realistic fashion photography style."
+        }
+      }
+    },
+    "street_walk_editorial": {
+      "display_name": "Street Walk Editorial (Luxury Fashion Reel)",
+
+      "image_prompt_template": "Create an ultra realistic 9:16 luxury street fashion photograph. IDENTITY LOCK: Use Image 1 as the absolute identity reference. Preserve exact face, hairstyle, body proportions, and facial structure. OUTFIT: Exact clothing from Image 2. ENVIRONMENT: Use the background from Image 3 but transformed into a premium modern city fashion environment with realistic storefront reflections, clean sidewalks, and natural depth. LIGHTING: Soft overcast luxury daylight or golden hour fashion lighting. CAMERA STYLE: Editorial street photography like Zara, H&M Studio, or Korean luxury fashion campaigns. FULL BODY framing with long legs and elegant posture. Ultra realistic skin pores, fabric texture, realistic shadows, DSLR realism, sharp focus, 4K.",
+
+      "chatgpt_video_prompt": "Bạn là đạo diễn fashion commercial chuyên tạo video luxury streetwear cho Google Veo 3. Hãy viết prompt video 8 giây từ Image 1 tới Image 2(nếu có). CHỦ ĐỀ: Luxury Street Walk Editorial. QUY TẮC BẮT BUỘC: Một cảnh quay liên tục duy nhất, không jump cut, không motion giả. Mẫu bước đi chậm rãi như đang quay campaign thời trang cao cấp ngoài phố. Chuyển động mềm mại, tự nhiên, confidence cao nhưng không diễn lố. HÀNH ĐỘNG: người mẫu walking nhẹ về phía camera hoặc ngang khung hình, tóc và tay chuyển động tự nhiên theo bước đi. Có subtle eye contact, micro-expression nhẹ, breathing realism. CAMERA: cinematic tracking shot cực mượt, handheld realism rất nhẹ như cameraman thật đang follow mẫu. GIỮ outfit rõ nét toàn bộ, background upscale fashion street realism, premium atmosphere, realistic body physics. Trả về JSON: {\"prompt\":\"...\",\"hook\":\"...\",\"caption\":\"...\"}",
+
+      "shots": {
+        "street_editorial_walk": {
+          "prompt": "Luxury editorial walking shot. Full body visible. Long confident walking pose. Fashion campaign energy. Realistic leg movement and fabric motion. Premium city background remains realistic and sharp.",
+          "target_count": 1,
+          "variants": 2,
+          "pose_change_request": "Keep the same girl, outfit, and fashion environment. Change walking rhythm and arm swing slightly for a more elegant luxury campaign feeling. Maintain realistic movement and premium model confidence."
+        }
+      }
+    },
+
+    "soft_bedroom_girlfriend_vibe": {
+      "display_name": "Soft Bedroom Girlfriend Vibe",
+
+      "image_prompt_template": "Create an ultra realistic 9:16 cozy bedroom fashion photograph. IDENTITY LOCK: Use Image 1 as the absolute identity reference. Preserve exact face, hairstyle, body proportions, and camera perspective. OUTFIT: Exact clothing from Image 2. ENVIRONMENT: Use Image 3 as a clean modern bedroom with soft neutral aesthetic, natural window lighting, realistic furniture details, and deep focus. LIGHTING: Soft morning sunlight through window curtains. MOOD: Warm, feminine, natural, emotionally engaging. DSLR realism, realistic skin pores, detailed fabric texture, no blur background, sharp indoor details, 4K.",
+
+      "chatgpt_video_prompt": "Bạn là đạo diễn TikTok fashion lifestyle chuyên tạo cảm giác 'girlfriend vibe' cao cấp cho Google Veo 3. Hãy viết prompt video 8 giây từ Image 1 tới Image 2(nếu có). CHỦ ĐỀ: Soft Bedroom Girlfriend Vibe. QUY TẮC BẮT BUỘC: Một cảnh quay liên tục duy nhất, không jump cut, không acting giả. Mẫu đứng hoặc ngồi tự nhiên trong phòng ngủ hiện đại với thần thái mềm mại, gần gũi và cuốn hút. HÀNH ĐỘNG: vuốt tóc nhẹ, nhìn về camera rồi nhìn chỗ khác tự nhiên, thay đổi trọng tâm cơ thể cực nhẹ, subtle smile mềm mại. Có blinking tự nhiên, breathing realism và micro-expression rất thật. CAMERA: handheld cinematic cực nhẹ như người thật đang quay bằng điện thoại flagship. GIỮ background sắc nét, ánh sáng mềm tự nhiên, fashion lifestyle realism cao cấp. Trả về JSON: {\"prompt\":\"...\",\"hook\":\"...\",\"caption\":\"...\"}",
+
+      "shots": {
+        "bedroom_soft_pose": {
+          "prompt": "Soft feminine lifestyle fashion shot. Natural relaxed posture inside modern bedroom. Elegant emotional eye contact. Cozy premium atmosphere. Realistic breathing and subtle posture movement.",
+          "target_count": 1,
+          "variants": 2,
+          "pose_change_request": "Keep the same girl, outfit and bedroom. Adjust posture naturally like candid lifestyle photography. Add softer facial emotion and gentle hand movement near hair or waist."
+        }
+      }
+    },
+
+    "luxury_boutique_showroom": {
+      "display_name": "Luxury Boutique Showroom (High Conversion)",
+
+      "image_prompt_template": "Create an ultra realistic 9:16 luxury boutique fashion photograph. IDENTITY LOCK: Use Image 1 as the exact face and body reference. OUTFIT: Exact clothing from Image 2. ENVIRONMENT: Transform Image 3 into a premium luxury boutique showroom with clean racks, elegant mirrors, warm lighting reflections, and upscale retail atmosphere. CAMERA STYLE: High-end ecommerce campaign photography. Sharp premium details everywhere, realistic luxury lighting reflections, rich fabric texture, ultra realistic DSLR quality, deep focus, no background blur, 4K.",
+
+      "chatgpt_video_prompt": "Bạn là đạo diễn quảng cáo thời trang ecommerce chuyên tạo video chuyển đổi cao cho TikTok Shop bằng Google Veo 3. Hãy viết prompt video 8 giây từ Image 1 tới Image 2. CHỦ ĐỀ: Luxury Boutique Showroom. QUY TẮC BẮT BUỘC: Một cảnh quay liên tục duy nhất, không jump cut, không fake motion. Mẫu đứng trong showroom thời trang cao cấp với thần thái chuyên nghiệp như đang quay quảng cáo Zara hoặc boutique luxury. HÀNH ĐỘNG: xoay người cực nhẹ để khoe form outfit, tay chạm nhẹ vào vải áo hoặc túi quần tự nhiên, subtle breathing và eye movement rất thật. CAMERA: slow cinematic orbit hoặc slow push-in cực mượt như quay bằng gimbal chuyên nghiệp. Outfit luôn rõ form dáng. Background boutique sang trọng, ánh sáng retail cao cấp, realistic luxury atmosphere. Trả về JSON: {\"prompt\":\"...\",\"hook\":\"...\",\"caption\":\"...\"}",
+
+      "shots": {
+        "boutique_showcase": {
+          "prompt": "Premium luxury boutique showcase shot. Full outfit clearly visible. Elegant standing pose with subtle body angle. Fashion retail atmosphere with sharp luxurious details and realistic lighting reflections.",
+          "target_count": 2,
+          "variants": 2,
+          "pose_change_request": "Keep the same girl, outfit and boutique environment. Change body angle and hand placement slightly to better showcase outfit silhouette and luxury fashion energy."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "global_config": {
+    "identity_lock": "Use the exact same Vietnamese female model from {model_image}, keep consistent face, body shape, hairstyle, and skin tone.",
+    "outfit_transfer": "Replace the original outfit with the EXACT full outfit from {product_image}, including all clothing items shown. Preserve the full outfit combination, accurate fit, natural fabric draping, and realistic shadows.",
+    "background_lock": "Use the EXACT environment from {background_image}. Keep identical background, layout, objects, lighting direction, shadows, and color tone. DO NOT add, remove, or modify any objects, props, lights, decorations, or elements. The background must remain unchanged.",
+    "composition_rules": "The model must be naturally placed into the background with correct perspective, scale, and grounding shadow. Feet must touch the floor correctly.",
+    "quality": "ultra realistic, 4k, natural skin texture, detailed fabric, no distortion, no extra limbs, no blur, 9:16 vertical fashion photography",
+    "base_template": "Create a high-end fashion photo. {identity_lock} {outfit_transfer} {background_lock}. Camera framing: {framing}. Scene context: {context}. Focus on {focus_area}. The model stands in a naturally posed stance, with relaxed, organic body positioning. Avoid stiff or artificial posing. {composition_rules}. {quality}."
+  },
+  "shot_definitions": {
+    "full": {
+      "framing": "full body fashion photo, head to toe, entire body clearly visible",
+      "context": "natural presence, subject centered and fills the frame vertically",
+      "constraint": "Show full body from head to toe. Feet fully visible. Do not crop legs."
+    },
+    "medium": {
+      "framing": "medium shot, mid-thigh to head",
+      "context": "relaxed natural look, balanced framing",
+      "constraint": "Show from mid-thigh to head only. Cut exactly at mid-thigh. No feet visible."
+    },
+    "close_angle": {
+      "framing": "tight close-up, chest to head",
+      "context": "natural facial expression, camera is close to subject",
+      "constraint": "Very tight framing from chest to head. No lower body visible."
+    }
+  },
+  "scenarios": {
+    "basic_model": {
+      "name": "Mẫu Cơ Bản (3 Shots)",
+      "use_model": true,
+      "shots": ["full", "medium", "close_angle"]
+    }
+  }
+}

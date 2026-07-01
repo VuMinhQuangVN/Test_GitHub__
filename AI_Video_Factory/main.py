@@ -1,0 +1,53 @@
+import sys
+import os
+from PyQt6.QtWidgets import QApplication
+from PyQt6.QtCore import Qt
+
+# Import Core và UI
+from core.config_manager import ConfigManager
+from ui.main_window import MainWindow
+
+def setup_environment():
+    """Khởi tạo môi trường làm việc cơ bản"""
+    # Đảm bảo các thư mục cần thiết tồn tại
+    folders = ["database", "profiles", "logs"]
+    for folder in folders:
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+            print(f"📁 Đã tạo thư mục: {folder}")
+
+def main():
+    # 1. Tối ưu hiển thị cho màn hình 4K/High-DPI
+    os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
+    
+    # 2. Khởi tạo ứng dụng Qt
+    app = QApplication(sys.argv)
+    app.setStyle("Fusion") # Dùng style Fusion để giao diện đồng nhất trên Win/Mac
+    
+    # 3. Thiết lập môi trường và cấu hình
+    setup_environment()
+    
+    # Giả sử ổ lưu trữ mặc định của bạn là ổ F hoặc thư mục hiện tại
+    # Bạn có thể thay đổi đường dẫn này tùy theo máy
+    base_storage = "F:/Data_Tool" if os.path.exists("F:/") else os.path.join(os.getcwd(), "output")
+    
+    try:
+        # Khởi tạo ConfigManager (Dependency Injection vào MainWindow)
+        config_mgr = ConfigManager(base_storage)
+        
+        # 4. Khởi tạo Giao diện chính
+        window = MainWindow(config_manager=config_mgr)
+        window.show()
+        
+        print("🚀 Hệ thống VEO3 ULTRA đã sẵn sàng!")
+        
+        # 5. Chạy vòng lặp sự kiện
+        sys.exit(app.exec())
+        
+    except Exception as e:
+        print(f"❌ Lỗi khởi động hệ thống: {e}")
+        input("Nhấn Enter để thoát...")
+
+if __name__ == "__main__":
+    main()
+
