@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+
+# Virtual env
+venv/
+.venv/
+env/
+
+# Secrets / account data - KHONG duoc commit
+AI_Video_Factory/database/api_keys.json
+AI_Video_Factory/database/*account_status*
+AI_Video_Factory/database/*.session
+**/*api_key*.json
+**/*.env
+.env
+
+# Chrome profiles (du lieu dang nhap that)
+**/profiles/
+**/chrome_profiles/
+**/user_data/
+
+# Logs / debug trace
+AI_Video_Factory/logs/*.zip
+AI_Video_Factory/logs/**
+!AI_Video_Factory/logs/.gitkeep
+
+# OS junk
+.DS_Store
+Thumbs.db
+*.doc

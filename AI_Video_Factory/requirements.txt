@@ -1,0 +1,9 @@
+PyQt6
+qtawesome
+playwright
+moviepy<2
+Pillow
+google-generativeai
+
+# Sau khi pip install, chay them lenh sau de tai trinh duyet cho playwright:
+#   playwright install chromium
