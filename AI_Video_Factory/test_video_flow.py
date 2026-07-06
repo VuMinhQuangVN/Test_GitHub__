@@ -12,7 +12,7 @@ from playwright.sync_api import sync_playwright
 # Import các tài nguyên sẵn có trong project của bạn
 from core.config_manager import ConfigManager
 from core.browser_manager import BrowserManager
-from pages.flow_components_page import FlowComponentsPage
+from bots.flow_components_page import FlowComponentsPage
 
 # =======================================================
 # QTHREAD: LUỒNG CHẠY PLAYWRIGHT NGẦM (TRÁNH ĐƠ UI)

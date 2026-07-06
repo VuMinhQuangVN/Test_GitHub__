@@ -2,7 +2,7 @@ import time
 import json
 import re
 import os
-from pages.base_page import BasePage
+from bots.base_page import BasePage
 
 class ChatGPTPage(BasePage):
     def __init__(self, page):

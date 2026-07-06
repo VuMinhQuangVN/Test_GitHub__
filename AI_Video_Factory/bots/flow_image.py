@@ -4,7 +4,7 @@ import time
 import os
 import datetime
 import re
-from pages.base_page import BasePage
+from bots.base_page import BasePage
 from core.config_manager import ConfigManager # Import thêm config manager
 
 class FlowImagePage(BasePage):

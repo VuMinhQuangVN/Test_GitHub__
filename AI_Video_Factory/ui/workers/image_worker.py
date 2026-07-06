@@ -3,8 +3,8 @@ from PyQt6.QtCore import QThread, pyqtSignal
 from playwright.sync_api import sync_playwright
 from core.browser_manager import BrowserManager
 from core.prompt_builder import PromptBuilder
-from pages.flow_image import FlowImagePage
-from pages.chatgpt_images_page import ChatGPTImagesPage
+from bots.flow_image import FlowImagePage
+from bots.chatgpt_images_page import ChatGPTImagesPage
 
 # ================================================================
 # WORKER CON: VẼ ẢNH CHO 1 SHOT (CHUYÊN TRÁCH CHATGPT)

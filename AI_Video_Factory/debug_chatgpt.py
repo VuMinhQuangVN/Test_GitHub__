@@ -1,7 +1,7 @@
 import sys, os, time
 from playwright.sync_api import sync_playwright
 from core.browser_manager import BrowserManager
-from pages.chatgpt_images_page import ChatGPTImagesPage
+from bots.chatgpt_images_page import ChatGPTImagesPage
 
 def run_debug_upload():
     profile_name = "google_acc_1" 

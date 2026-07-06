@@ -5,7 +5,7 @@ from PyQt6.QtCore import QThread, pyqtSignal
 from playwright.sync_api import sync_playwright
 
 # Import trang ChatGPTImagesPage từ project của bạn
-from pages.chatgpt_images_page import ChatGPTImagesPage
+from bots.chatgpt_images_page import ChatGPTImagesPage
 
 class TestWorker(QThread):
     finished = pyqtSignal()

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import time, os, datetime, re, json
-from pages.base_page import BasePage
+from bots.base_page import BasePage
 from core.config_manager import ConfigManager
 
 class FlowComponentsPage(BasePage):

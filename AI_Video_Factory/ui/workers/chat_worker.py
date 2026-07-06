@@ -4,7 +4,7 @@ import uuid
 from PyQt6.QtCore import QThread, pyqtSignal
 from playwright.sync_api import sync_playwright
 from core.browser_manager import BrowserManager
-from pages.chatgpt_page import ChatGPTPage
+from bots.chatgpt_page import ChatGPTPage
 
 class ChatGPTWorker(QThread):
     # Trả về dict chứa: 'paths' (list ảnh) và 'data' (JSON kịch bản)

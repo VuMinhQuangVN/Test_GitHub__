@@ -1,5 +1,5 @@
 # import time, os, re, datetime, json
-# from pages.base_page import BasePage
+# from bots.base_page import BasePage
 
 # class ChatGPTImagesPage(BasePage):
 #     def __init__(self, page):
@@ -210,7 +210,7 @@
 #             except: pass
 #             return None
 import time, os, re, datetime, json
-from pages.base_page import BasePage
+from bots.base_page import BasePage
 
 class ChatGPTImagesPage(BasePage):
     def __init__(self, page):

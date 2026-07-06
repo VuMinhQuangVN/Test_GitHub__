@@ -1,5 +1,14 @@
 import sys
 import os
+
+# Luon dat thu muc lam viec la thu muc chua file main.py nay,
+# bat ke ban dang dung o dau khi go lenh chay python.
+# Neu khong lam vay, cac thu muc database/profiles/logs se bi tao nham
+# ra ben ngoai AI_Video_Factory (vi du ra thu muc cha Test_GitHub).
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+os.chdir(BASE_DIR)
+sys.path.insert(0, BASE_DIR)
+
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import Qt
 

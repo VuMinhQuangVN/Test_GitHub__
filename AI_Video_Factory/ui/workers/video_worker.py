@@ -4,8 +4,8 @@ from playwright.sync_api import sync_playwright
 from core.browser_manager import BrowserManager
 
 # Import cả 2 trang lõi
-from pages.flow_page import FlowPage
-from pages.flow_components_page import FlowComponentsPage # <--- BOT MỚI
+from bots.flow_page import FlowPage
+from bots.flow_components_page import FlowComponentsPage # <--- BOT MỚI
 
 class VideoWorker(QThread):
     finished_task = pyqtSignal(str, str, str)
