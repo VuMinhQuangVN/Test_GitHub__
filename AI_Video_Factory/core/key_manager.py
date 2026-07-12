@@ -1,5 +1,9 @@
 import json
 import os
+from core.logger import get_logger
+
+log = get_logger(__name__)
+
 
 class KeyManager:
     def __init__(self, db_path="database/api_keys.json"):
@@ -21,7 +25,8 @@ class KeyManager:
                 data = json.load(f)
                 self.keys = data.get("gemini_keys", [])
                 self.current_index = data.get("current_index", 0)
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
+            log.warning("File %s bi hong/khong doc duoc JSON, dung danh sach key rong: %s", self.db_path, e)
             self.keys = []
 
     def get_current_key(self):
@@ -40,5 +45,5 @@ class KeyManager:
         with open(self.db_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4)
             
-        print(f"🔄 [KeyManager] Đã đổi sang API Key vị trí: {self.current_index + 1}")
+        log.info("Da doi sang API Key vi tri: %d", self.current_index + 1)
         return self.keys[self.current_index]

@@ -6,6 +6,10 @@ from core.browser_manager import BrowserManager
 # Import cả 2 trang lõi
 from bots.flow_page import FlowPage
 from bots.flow_components_page import FlowComponentsPage # <--- BOT MỚI
+from core.logger import get_logger
+
+log = get_logger(__name__)
+
 
 class VideoWorker(QThread):
     finished_task = pyqtSignal(str, str, str)
@@ -24,10 +28,13 @@ class VideoWorker(QThread):
 
     def run(self):
         # GIÃN CÁCH 2 GIÂY/NICK
-        try: acc_num = int(re.search(r'\d+', self.profile_name).group())
-        except: acc_num = 0
+        try:
+            acc_num = int(re.search(r'\d+', self.profile_name).group())
+        except AttributeError:
+            # Ten profile khong co chu so (VD "chrome_auto_profile") -> binh thuong, khong can log
+            acc_num = 0
         wait_time = (acc_num * 2) + random.uniform(0.5, 1.5)
-        print(f"⏳ [WORKER] {self.profile_name} chờ {wait_time:.1f}s trước khi chạy...")
+        log.info("%s cho %.1fs truoc khi chay...", self.profile_name, wait_time)
         time.sleep(wait_time)
         
         os.makedirs("logs", exist_ok=True)
@@ -105,7 +112,9 @@ class VideoWorker(QThread):
                     self.finished_task.emit(self.task_id, str(res_status), "")
 
         except Exception as e:
-            print(f"❌ [WORKER] Crash hệ thống {self.profile_name}: {e}")
-            try: context.tracing.stop(path=trace_path)
-            except: pass
+            log.error("Crash he thong tren profile %s: %s", self.profile_name, e, exc_info=True)
+            try:
+                context.tracing.stop(path=trace_path)
+            except Exception as trace_err:
+                log.warning("Khong luu duoc trace debug (%s): %s", trace_path, trace_err)
             self.finished_task.emit(self.task_id, "SYSTEM_CRASH", "")

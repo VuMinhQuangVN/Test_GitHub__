@@ -15,6 +15,9 @@ from PyQt6.QtCore import Qt
 # Import Core và UI
 from core.config_manager import ConfigManager
 from ui.main_window import MainWindow
+from core.logger import get_logger
+
+log = get_logger(__name__)
 
 def setup_environment():
     """Khởi tạo môi trường làm việc cơ bản"""
@@ -23,7 +26,7 @@ def setup_environment():
     for folder in folders:
         if not os.path.exists(folder):
             os.makedirs(folder)
-            print(f"📁 Đã tạo thư mục: {folder}")
+            log.info("Da tao thu muc: %s", folder)
 
 def main():
     # 1. Tối ưu hiển thị cho màn hình 4K/High-DPI
@@ -48,13 +51,13 @@ def main():
         window = MainWindow(config_manager=config_mgr)
         window.show()
         
-        print("🚀 Hệ thống VEO3 ULTRA đã sẵn sàng!")
+        log.info("He thong VEO3 ULTRA da san sang!")
         
         # 5. Chạy vòng lặp sự kiện
         sys.exit(app.exec())
         
     except Exception as e:
-        print(f"❌ Lỗi khởi động hệ thống: {e}")
+        log.error("Loi khoi dong he thong: %s", e, exc_info=True)
         input("Nhấn Enter để thoát...")
 
 if __name__ == "__main__":

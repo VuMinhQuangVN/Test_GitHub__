@@ -5,6 +5,10 @@ from PyQt6.QtCore import QThread, pyqtSignal
 from playwright.sync_api import sync_playwright
 from core.browser_manager import BrowserManager
 from bots.chatgpt_page import ChatGPTPage
+from core.logger import get_logger
+
+log = get_logger(__name__)
+
 
 class ChatGPTWorker(QThread):
     # Trả về dict chứa: 'paths' (list ảnh) và 'data' (JSON kịch bản)
@@ -21,7 +25,7 @@ class ChatGPTWorker(QThread):
         self.profile_name = f"chatgpt_guest_{self.unique_id}"
 
     def run(self):
-        print(f"🤖 [CHAT-WORKER] Khởi tạo luồng khách mới: {self.profile_name}")
+        log.info("Khoi tao luong khach moi: %s", self.profile_name)
         
         mgr = BrowserManager(profile_name=self.profile_name)
         
@@ -46,13 +50,13 @@ class ChatGPTWorker(QThread):
                 result = chat_bot.get_scripts_with_images(self.image_paths, self.prompt_request)
                 
                 if result:
-                    print(f"✅ [CHAT-WORKER] Đã lấy xong kịch bản cho: {os.path.basename(self.image_paths[0])}")
+                    log.info("Da lay xong kich ban cho: %s", os.path.basename(self.image_paths[0]))
                     self.finished.emit({
                         "paths": self.image_paths, 
                         "data": result
                     })
                 else:
-                    print(f"⚠️ [CHAT-WORKER] ChatGPT trả về rỗng.")
+                    log.warning("ChatGPT tra ve rong (khong co kich ban hop le).")
                     self.error.emit("ChatGPT không trả về kịch bản hợp lệ.")
 
                 # 5. Đóng trình duyệt
@@ -68,9 +72,10 @@ class ChatGPTWorker(QThread):
                     if os.path.exists(full_path):
                         import shutil
                         shutil.rmtree(full_path)
-                except: pass
+                except OSError as e:
+                    log.warning("Khong xoa duoc thu muc profile tam %s: %s", mgr.profile_dir, e)
 
         except Exception as e:
             error_msg = f"Lỗi luồng ChatGPT ({self.profile_name}): {str(e)}"
-            print(f"❌ {error_msg}")
+            log.error(error_msg, exc_info=True)
             self.error.emit(error_msg)

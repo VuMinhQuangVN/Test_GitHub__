@@ -3,7 +3,10 @@ import google.generativeai as genai
 from google.api_core.exceptions import ResourceExhausted 
 from PIL import Image
 from core.key_manager import KeyManager
+from core.logger import get_logger
 import time
+
+log = get_logger(__name__)
 
 class GeminiAPI:
     def __init__(self, api_key: str = None):
@@ -27,12 +30,12 @@ class GeminiAPI:
                 response = self.model.generate_content([instruction, img])
                 return response.text
             except ResourceExhausted:
-                print(f"⚠️ Key {attempt+1} hết hạn. Đang đổi...")
+                log.warning("Key Gemini #%d het quota, dang doi key khac...", attempt + 1)
                 self.key_manager.rotate_key()
                 self._setup_client(None)
                 time.sleep(1)
             except Exception as e:
-                print(f"❌ Lỗi API: {e}")
+                log.error("Loi khi goi Gemini API (generate_with_image): %s", e, exc_info=True)
                 break
         return None
 
@@ -42,4 +45,8 @@ class GeminiAPI:
         try:
             res = self.model.generate_content(prompt)
             return res.text.strip()
-        except: return text
+        except Exception as e:
+            # Fallback: neu dich loi thi tra ve nguyen van goc, khong chan luong chay,
+            # nhung van log lai de biet ly do (VD: het quota, ten qua dai...).
+            log.warning("Dich nhanh that bai cho '%s', giu nguyen text goc: %s", text, e)
+            return text

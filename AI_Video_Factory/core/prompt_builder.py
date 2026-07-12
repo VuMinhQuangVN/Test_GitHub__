@@ -1,5 +1,9 @@
 import json
 import os
+from core.logger import get_logger
+
+log = get_logger(__name__)
+
 
 class PromptBuilder:
     def __init__(self, json_path="database/prompts/scenarios.json"):
@@ -69,4 +73,6 @@ class PromptBuilder:
             with open(self.products_path, 'w', encoding='utf-8') as f:
                 json.dump(self.products, f, indent=4, ensure_ascii=False)
             return True
-        except: return False
+        except OSError as e:
+            log.error("Khong luu duoc prompt/products: %s", e, exc_info=True)
+            return False

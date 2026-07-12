@@ -2,6 +2,10 @@ import os
 import shutil
 import time
 import re
+from core.logger import get_logger
+
+log = get_logger(__name__)
+
 
 class BrowserManager:
     def __init__(self, profile_name="chrome_auto_profile"):
@@ -10,9 +14,10 @@ class BrowserManager:
         self.profile_dir = os.path.join(self.base_profiles_dir, profile_name)
 
     def write_log(self, message):
-        """Hàm ghi log nội bộ cho BrowserManager"""
-        timestamp = time.strftime("%H:%M:%S")
-        print(f"   [{timestamp}] [BROWSER-MGR] {message}")
+        """Giu lai ten ham nay de khong phai sua moi noi dang goi self.write_log(...),
+        nhung ben trong dung logger dung chung thay vi tu che print() (gio se
+        duoc ghi ca vao logs/app.log, khong chi hien tren console)."""
+        log.info("[%s] %s", self.profile_name, message)
 
     def init_browser(self, p, headless=False, slow_mo=0):
         """Khởi tạo Chrome với cấu hình ẩn danh (Stealth) và ưu tiên độ mượt"""
@@ -83,8 +88,10 @@ class BrowserManager:
             ]
             for target in targets:
                 if os.path.exists(target):
-                    try: shutil.rmtree(target, ignore_errors=True)
-                    except: pass
+                    try:
+                        shutil.rmtree(target, ignore_errors=True)
+                    except OSError as e:
+                        log.warning("Khong don duoc cache tai %s: %s", target, e)
         self.write_log(f"🧹 Dọn dẹp cache xong cho: {self.profile_name}")
 
     def hard_reset_profile(self):

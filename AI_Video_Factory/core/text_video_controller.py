@@ -8,6 +8,9 @@ from PyQt6.QtCore import QObject
 # Import Component và Worker
 from ui.components.image_card import ImageCard
 from ui.workers.chat_worker import ChatGPTWorker
+from core.logger import get_logger
+
+log = get_logger(__name__)
 
 class TextVideoController(QObject):
     def __init__(self, view, config_manager):
@@ -229,14 +232,16 @@ class TextVideoController(QObject):
     # LOGIC: THƯ MỤC XUẤT VIDEO (OUTPUT SETTINGS)
     # =======================================================
     def load_saved_directory(self):
+        if not os.path.exists(self.local_config_file):
+            return  # Chua tung luu thu muc nao, day la binh thuong o lan chay dau
         try:
             with open(self.local_config_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 saved_dir = data.get("save_dir", "")
                 if saved_dir and os.path.exists(saved_dir):
                     self.view.txt_save_dir.setText(saved_dir)
-        except: 
-            pass
+        except (json.JSONDecodeError, OSError) as e:
+            log.warning("Khong doc duoc thu muc luu da luu (%s): %s", self.local_config_file, e)
 
     def browse_save_directory(self):
         current_dir = self.view.txt_save_dir.text() if self.view.txt_save_dir.text() else os.getcwd()
@@ -247,8 +252,8 @@ class TextVideoController(QObject):
             try:
                 with open(self.local_config_file, 'w', encoding='utf-8') as f:
                     json.dump({"save_dir": folder}, f, indent=4)
-            except: 
-                pass
+            except OSError as e:
+                log.warning("Khong luu duoc thu muc xuat video (%s): %s", self.local_config_file, e)
 
     # =======================================================
     # LOGIC: TRÍCH XUẤT VÀ HIỂN THỊ KẾT QUẢ CHATGPT

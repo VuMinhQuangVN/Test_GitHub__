@@ -5,6 +5,9 @@ from core.browser_manager import BrowserManager
 from core.prompt_builder import PromptBuilder
 from bots.flow_image import FlowImagePage
 from bots.chatgpt_images_page import ChatGPTImagesPage
+from core.logger import get_logger
+
+log = get_logger(__name__)
 
 # ================================================================
 # WORKER CON: VẼ ẢNH CHO 1 SHOT (CHUYÊN TRÁCH CHATGPT)
@@ -62,8 +65,12 @@ class SingleShotChatGPTWorker(QThread):
                         
                         if res_b == "OUT_OF_CREDIT":
                             if res_a and os.path.exists(res_a):
-                                try: os.remove(res_a)
-                                except: pass
+                                try:
+                                    os.remove(res_a)
+                                except OSError as e:
+                                    # Khong quan trong (VD file dang bi khoa), nhung can biet
+                                    # de khong nham lan voi loi nghiem trong hon khi debug.
+                                    log.warning("Khong xoa duoc anh A du (out of credit): %s (%s)", res_a, e)
                             self.shot_finished.emit(self.task['type'], [], "OUT_OF_CREDIT", self.profile)
                             context.close(); return
                         
@@ -76,7 +83,8 @@ class SingleShotChatGPTWorker(QThread):
                     self.shot_finished.emit(self.task['type'], [], "UPLOAD_FAIL", self.profile)
                     context.close()
         except Exception as e:
-            print(f"❌ [SHOT-WORKER] Crash: {e}")
+            log.error("[SHOT-WORKER] Crash khi ve shot %s (profile %s): %s",
+                      self.task.get('type'), self.profile, e, exc_info=True)
             self.shot_finished.emit(self.task['type'], [], "ERROR", self.profile)
 
 # ================================================================
@@ -195,7 +203,8 @@ class ImageWorker(QThread):
                 context.close()
                 bm.cleanup_profile()
         except Exception as e:
-            print(f"❌ [FLOW-SEQUENTIAL] Lỗi: {e}")
+            log.error("[FLOW-SEQUENTIAL] Loi khi chay sku %s: %s",
+                      self.data.get("sku"), e, exc_info=True)
             
         self.finished.emit()
 
